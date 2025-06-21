@@ -130,24 +130,28 @@ export default function UMLGenerator() {
 		  originalStory: originalStory,
 		})
 
-		if (response?.uml) {
-		  setUmlCode(response.uml)
-		  setConversation(prev => {
-			if (!prev) return null
-			return {
-			  ...prev,
-			  steps: [
-				...prev.steps,
-				{
-				  input: chatInput,
-				  umlCode: response.uml,
-				  rawResponse: response.rawText, // ✅ Store AI’s comment only
-				},
-			  ],
-			}
-		  })
-		  setChatInput('')
-		}
+if (response?.uml) {
+  setUmlCode(response.uml);
+
+  setConversation((prev) => {
+    if (!prev) return null;
+    return {
+      ...prev,
+      steps: [
+        ...prev.steps,
+        {
+          input: chatInput,
+          umlCode: response.uml!, // כאן אנחנו בטוחים שזה string
+          rawResponse: response.rawText,
+        },
+      ],
+    };
+  });
+
+  setChatInput('');
+}
+
+
 
 		else {
 		  alert('Failed to improve diagram.')
@@ -183,7 +187,16 @@ export default function UMLGenerator() {
 
 	
 	const downloadConversation = (
-	  conversation: typeof conversation,
+	 conversation: {
+    story: string;
+    diagramType: string;
+    steps: {
+      input: string;
+      umlCode: string;
+      rawResponse?: string;
+      basedOnStepIndex?: number;
+    }[];
+  } | null,
 	  format: 'json' | 'csv'
 	) => {
 	  if (!conversation) return
