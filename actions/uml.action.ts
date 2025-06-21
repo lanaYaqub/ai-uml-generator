@@ -38,9 +38,9 @@ ${JSON.stringify(diagramTemplates)}
     const responseText = result.choices[0].message.content || '';
     const umlCode = extractPlantUMLCode(responseText);
 
-    if (!umlCode.includes('class')) {
-      throw new Error('No class definitions found in the UML output.');
-    }
+ if (umlCode && !umlCode.includes('class')) {
+  throw new Error('No class definitions found in the UML output.');
+}
 
     return umlCode;
   } catch (error) {
