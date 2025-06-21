@@ -68,10 +68,10 @@ const UMLViewer = ({
             <>
               {/* Controls */}
               <div className="flex gap-2 mb-2">
-                <button onClick={zoomIn} className="p-2 bg-gray-200 rounded-md">
+                <button onClick={() => zoomIn()} className="p-2 bg-gray-200 rounded-md">
                   <ZoomIn />
                 </button>
-                <button onClick={zoomOut} className="p-2 bg-gray-200 rounded-md">
+                <button onClick={() => zoomOut()} className="p-2 bg-gray-200 rounded-md">
                   <ZoomOut />
                 </button>
                 <button
