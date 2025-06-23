@@ -521,10 +521,10 @@ if (response?.uml) {
 
 									{/* Improve Diagram Section */}
 									<div className="p-4 border-t space-y-4">
-									  <h2 className="text-md font-semibold">Improve Diagram</h2>
+									  <h2 className="text-md font-semibold">Smart Talik</h2>
 									  <div className="flex gap-2">
 										<Textarea
-										  placeholder="Suggest an improvement..."
+										  placeholder="Write here to chat or propose improvements..."
 										  value={chatInput}
 										  onChange={(e) => setChatInput(e.target.value)}
 										  className="w-full"
